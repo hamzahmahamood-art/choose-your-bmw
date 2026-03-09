@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+
 <title>Ultimate BMW M Car Tournament</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 
@@ -10,29 +14,34 @@ background:#0b0b0b;
 color:white;
 font-family:Arial;
 text-align:center;
-padding:30px;
+padding:20px;
 }
 
 h1{
-font-size:42px;
+font-size:40px;
+background:linear-gradient(90deg,#00aaff,#6f42ff,#ff0033);
+-webkit-background-clip:text;
+color:transparent;
 }
 
 .container{
 display:flex;
 justify-content:center;
-gap:40px;
-margin-top:50px;
+gap:30px;
+margin-top:40px;
+flex-wrap:wrap;
 }
 
 .car{
 background:#151515;
-padding:40px;
+padding:20px;
 border-radius:14px;
-width:260px;
+width:90%;
+max-width:320px;
 cursor:pointer;
 transition:0.25s;
 border:2px solid #222;
-font-size:20px;
+animation:fadeIn 0.5s ease;
 }
 
 .car:hover{
@@ -40,8 +49,19 @@ transform:scale(1.05);
 border-color:#00aaff;
 }
 
+.car img{
+width:100%;
+border-radius:10px;
+margin-bottom:10px;
+}
+
+.car p{
+font-size:20px;
+}
+
 #progressBar{
-width:70%;
+width:90%;
+max-width:500px;
 height:22px;
 background:#222;
 margin:auto;
@@ -72,6 +92,17 @@ margin-top:50px;
 font-size:24px;
 }
 
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
 </style>
 
 </head>
@@ -87,8 +118,15 @@ font-size:24px;
 
 <div class="container">
 
-<div class="car" id="car1" onclick="choose(0)"></div>
-<div class="car" id="car2" onclick="choose(1)"></div>
+<div class="car" id="car1" onclick="choose(0)">
+<img id="img1">
+<p id="name1"></p>
+</div>
+
+<div class="car" id="car2" onclick="choose(1)">
+<img id="img2">
+<p id="name2"></p>
+</div>
 
 </div>
 
@@ -128,6 +166,38 @@ const cars=[
 
 ]
 
+const carImages={
+
+"BMW M140i F20":"https://upload.wikimedia.org/wikipedia/commons/0/0d/BMW_M140i.jpg",
+"BMW M240i F22":"https://upload.wikimedia.org/wikipedia/commons/4/49/BMW_M240i.jpg",
+"BMW M240i G42":"https://upload.wikimedia.org/wikipedia/commons/9/9a/BMW_M240i_G42.jpg",
+"BMW M340i G20":"https://upload.wikimedia.org/wikipedia/commons/6/63/BMW_M340i_G20.jpg",
+
+"BMW M2 F87":"https://upload.wikimedia.org/wikipedia/commons/1/16/BMW_M2.jpg",
+"BMW M2 Competition F87":"https://upload.wikimedia.org/wikipedia/commons/1/16/BMW_M2.jpg",
+"BMW M2 G87":"https://upload.wikimedia.org/wikipedia/commons/5/5a/BMW_M2_G87.jpg",
+
+"BMW M3 E30":"https://upload.wikimedia.org/wikipedia/commons/b/bd/BMW_M3_E30.jpg",
+"BMW M3 E46":"https://upload.wikimedia.org/wikipedia/commons/7/7c/BMW_M3_E46.jpg",
+"BMW M3 E92":"https://upload.wikimedia.org/wikipedia/commons/4/4f/BMW_M3_E92.jpg",
+"BMW M3 F80":"https://upload.wikimedia.org/wikipedia/commons/d/d2/BMW_M3_F80.jpg",
+"BMW M3 Competition F80":"https://upload.wikimedia.org/wikipedia/commons/d/d2/BMW_M3_F80.jpg",
+"BMW M3 G80":"https://upload.wikimedia.org/wikipedia/commons/b/b5/BMW_M3_G80.jpg",
+"BMW M3 Competition G80":"https://upload.wikimedia.org/wikipedia/commons/b/b5/BMW_M3_G80.jpg",
+
+"BMW M4 F82":"https://upload.wikimedia.org/wikipedia/commons/2/2f/BMW_M4_F82.jpg",
+"BMW M4 Competition F82":"https://upload.wikimedia.org/wikipedia/commons/2/2f/BMW_M4_F82.jpg",
+"BMW M4 G82":"https://upload.wikimedia.org/wikipedia/commons/e/e3/BMW_M4_G82.jpg",
+"BMW M4 Competition G82":"https://upload.wikimedia.org/wikipedia/commons/e/e3/BMW_M4_G82.jpg",
+
+"BMW M5 E60":"https://upload.wikimedia.org/wikipedia/commons/f/f3/BMW_M5_E60.jpg",
+"BMW M5 F90":"https://upload.wikimedia.org/wikipedia/commons/5/53/BMW_M5_F90.jpg",
+"BMW M5 Competition F90":"https://upload.wikimedia.org/wikipedia/commons/5/53/BMW_M5_F90.jpg",
+
+"BMW M8 Competition F92":"https://upload.wikimedia.org/wikipedia/commons/4/4e/BMW_M8_Competition.jpg"
+
+}
+
 let scores={}
 let totalRounds=40
 let round=0
@@ -148,8 +218,11 @@ b=Math.floor(Math.random()*cars.length)
 
 currentPair=[cars[a],cars[b]]
 
-document.getElementById("car1").innerText=currentPair[0]
-document.getElementById("car2").innerText=currentPair[1]
+document.getElementById("name1").innerText=currentPair[0]
+document.getElementById("name2").innerText=currentPair[1]
+
+document.getElementById("img1").src=carImages[currentPair[0]]
+document.getElementById("img2").src=carImages[currentPair[1]]
 
 }
 
