@@ -2,7 +2,15 @@
 <html>
 
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FFHPWEHXKL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'G-FFHPWEHXKL');
+</script>
 <title>Ultimate BMW M Car Tournament</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -118,13 +126,13 @@ transform:translateY(0);
 
 <div class="container">
 
-<div class="car" id="car1" onclick="choose(0)">
-<img id="img1">
+<div class="car" onclick="choose(0)">
+<img id="img1" alt="BMW car">
 <p id="name1"></p>
 </div>
 
-<div class="car" id="car2" onclick="choose(1)">
-<img id="img2">
+<div class="car" onclick="choose(1)">
+<img id="img2" alt="BMW car">
 <p id="name2"></p>
 </div>
 
@@ -168,33 +176,33 @@ const cars=[
 
 const carImages={
 
-"BMW M140i F20":"m140i.jpg",
-"BMW M240i F22":"m240i.jpg",
-"BMW M240i G42":"m240.jpg",
-"BMW M340i G20":"m340.jpg",
+"BMW M140i F20":"images/m140i.jpg",
+"BMW M240i F22":"images/m240i.jpg",
+"BMW M240i G42":"images/m240.jpg",
+"BMW M340i G20":"images/m340.jpg",
 
-"BMW M2 F87":"f87.jpeg",
-"BMW M2 Competition F87":"fm2c.jpeg",
-"BMW M2 G87":"gm2.jpeg",
+"BMW M2 F87":"images/f87.jpeg",
+"BMW M2 Competition F87":"images/fm2c.jpeg",
+"BMW M2 G87":"images/gm2.jpeg",
 
-"BMW M3 E30":"e30.jpeg",
-"BMW M3 E46":"46.jpeg",
-"BMW M3 E92":"e92.jpeg",
-"BMW M3 F80":"f80.jpeg",
-"BMW M3 Competition F80":"f80c.jpeg",
-"BMW M3 G80":"g80.jpeg",
-"BMW M3 Competition G80":"g80c.jpeg",
+"BMW M3 E30":"images/e30.jpeg",
+"BMW M3 E46":"images/46.jpeg",
+"BMW M3 E92":"images/e92.jpeg",
+"BMW M3 F80":"images/f80.jpeg",
+"BMW M3 Competition F80":"images/f80c.jpeg",
+"BMW M3 G80":"images/g80.jpeg",
+"BMW M3 Competition G80":"images/g80c.jpeg",
 
-"BMW M4 F82":"f82.jpeg",
-"BMW M4 Competition F82":"f82c.jpeg",
-"BMW M4 G82":"g82.jpeg",
-"BMW M4 Competition G82":"g82c.jpeg",
+"BMW M4 F82":"images/f82.jpeg",
+"BMW M4 Competition F82":"images/f82c.jpeg",
+"BMW M4 G82":"images/g82.jpeg",
+"BMW M4 Competition G82":"images/g82c.jpeg",
 
-"BMW M5 E60":"e60.jpeg",
-"BMW M5 F90":"f90.jpeg",
-"BMW M5 G90":"g90.jpeg",
+"BMW M5 E60":"images/e60.jpeg",
+"BMW M5 F90":"images/f90.jpeg",
+"BMW M5 G90":"images/g90.jpeg",
 
-"BMW M8 Competition F92":"m8.jpeg"
+"BMW M8 Competition F92":"images/m8.jpeg"
 
 }
 
@@ -278,7 +286,7 @@ let text=`My Top 3 BMW M Cars:\n1️⃣ ${top3[0][0]}\n2️⃣ ${top3[1][0]}\n3�
 
 navigator.clipboard.writeText(text)
 
-alert("Results copied! Paste it on Instagram, WhatsApp, or anywhere.")
+alert("Results copied! Paste it anywhere.")
 
 }
 
@@ -288,4 +296,5 @@ randomPair()
 
 </body>
 </html>
+
 
