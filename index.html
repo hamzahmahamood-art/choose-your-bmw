@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ultimate BMW M Car Tournament</title>
+
+<style>
+
+body{
+background:#0b0b0b;
+color:white;
+font-family:Arial;
+text-align:center;
+padding:30px;
+}
+
+h1{
+font-size:42px;
+}
+
+.container{
+display:flex;
+justify-content:center;
+gap:40px;
+margin-top:50px;
+}
+
+.car{
+background:#151515;
+padding:40px;
+border-radius:14px;
+width:260px;
+cursor:pointer;
+transition:0.25s;
+border:2px solid #222;
+font-size:20px;
+}
+
+.car:hover{
+transform:scale(1.05);
+border-color:#00aaff;
+}
+
+#progressBar{
+width:70%;
+height:22px;
+background:#222;
+margin:auto;
+margin-top:30px;
+border-radius:20px;
+overflow:hidden;
+}
+
+#progress{
+height:100%;
+background:#00aaff;
+width:0%;
+}
+
+button{
+margin-top:20px;
+padding:12px 25px;
+font-size:16px;
+cursor:pointer;
+border-radius:10px;
+border:none;
+background:#00aaff;
+color:white;
+}
+
+#result{
+margin-top:50px;
+font-size:24px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Ultimate BMW M Tournament</h1>
+<p>Choose the car you'd rather own</p>
+
+<div id="progressBar">
+<div id="progress"></div>
+</div>
+
+<div class="container">
+
+<div class="car" id="car1" onclick="choose(0)"></div>
+<div class="car" id="car2" onclick="choose(1)"></div>
+
+</div>
+
+<div id="result"></div>
+
+<script>
+
+const cars=[
+
+"BMW M140i F20",
+"BMW M240i F22",
+"BMW M240i G42",
+"BMW M340i G20",
+
+"BMW M2 F87",
+"BMW M2 Competition F87",
+"BMW M2 G87",
+
+"BMW M3 E30",
+"BMW M3 E46",
+"BMW M3 E92",
+"BMW M3 F80",
+"BMW M3 Competition F80",
+"BMW M3 G80",
+"BMW M3 Competition G80",
+
+"BMW M4 F82",
+"BMW M4 Competition F82",
+"BMW M4 G82",
+"BMW M4 Competition G82",
+
+"BMW M5 E60",
+"BMW M5 F90",
+"BMW M5 Competition F90",
+
+"BMW M8 Competition F92"
+
+]
+
+let scores={}
+let totalRounds=40
+let round=0
+let currentPair=[]
+
+cars.forEach(car=>{
+scores[car]=0
+})
+
+function randomPair(){
+
+let a=Math.floor(Math.random()*cars.length)
+let b=Math.floor(Math.random()*cars.length)
+
+while(a===b){
+b=Math.floor(Math.random()*cars.length)
+}
+
+currentPair=[cars[a],cars[b]]
+
+document.getElementById("car1").innerText=currentPair[0]
+document.getElementById("car2").innerText=currentPair[1]
+
+}
+
+function choose(index){
+
+scores[currentPair[index]]++
+
+round++
+
+updateProgress()
+
+if(round>=totalRounds){
+showResults()
+}else{
+randomPair()
+}
+
+}
+
+function updateProgress(){
+
+let percent=(round/totalRounds)*100
+document.getElementById("progress").style.width=percent+"%"
+
+}
+
+function showResults(){
+
+document.querySelector(".container").style.display="none"
+
+let sorted=Object.entries(scores).sort((a,b)=>b[1]-a[1])
+
+let top3=sorted.slice(0,3)
+
+let html="<h2>Your Top 3 BMW Picks</h2>"
+
+top3.forEach((car,i)=>{
+html+=`<p>#${i+1} — ${car[0]}</p>`
+})
+
+html+=`<button onclick="shareResults()">Share My Results</button>`
+
+document.getElementById("result").innerHTML=html
+
+}
+
+function shareResults(){
+
+let sorted=Object.entries(scores).sort((a,b)=>b[1]-a[1])
+let top3=sorted.slice(0,3)
+
+let text=`My Top 3 BMW M Cars:\n1️⃣ ${top3[0][0]}\n2️⃣ ${top3[1][0]}\n3️⃣ ${top3[2][0]}\n\nTry it yourself: `+window.location.href
+
+navigator.clipboard.writeText(text)
+
+alert("Results copied! Paste it on Instagram, WhatsApp, or anywhere.")
+
+}
+
+randomPair()
+
+</script>
+
+</body>
+</html>
